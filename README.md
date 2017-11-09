@@ -85,3 +85,15 @@ The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/ma
     * Phone with Android OS >= v5.0 (API 23, Marshmallow)
     * Camera
 
+
+## License ##
+
+Before using this software, please check the [LICENSE](LICENSE) file for details. 
+
+Additionally, this project is using open sourced code and resources from other projects as stated above. Please check their licenses accordinly.
+  * [OpenCV_LICENSE](OpenCV_LICENSE)
+  * [AdienceBenchmark_LICENSE](AdienceBenchmark_LICENSE)
+  * [AgeGenderDeepLearning_LICENSE](AgeGenderDeepLearning_LICENSE)
+
+## Contact ##
+Jacob Morton (jacob [at] postech [dot] ac [dot] kr)
