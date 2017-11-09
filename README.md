@@ -13,13 +13,15 @@ The application was created for a class assignment, as such please exclude the p
 ## Building the app ##
 Import the application from the [AndroidOpenCVVideoProcessing](AndroidOpenCVVideoProcessing) dir into Android Studio as a gradel application.  
   
-[build.gradle](AndroidOpenCVVideoProcessing/app/build.gradle) will need to be modified for configuring Bazel binary location, target archtecture, and tensorflow source dir.
+[build.gradle](AndroidOpenCVVideoProcessing/app/build.gradle) will need to be modified for configuring Bazel binary location, target archtecture, and tensorflow source dir. 
   
-It requires a device with a Camera and Android OS version >= 23. Everything should be included, aside from build dependencies provided by Android Studio. This project was build on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.
+Tensorflow source, and instructions to build it, can be found [here](https://github.com/tensorflow/tensorflow)
+  
+It requires a device with a Camera and Android OS version >= 23. Everything should be included, aside from build dependencies provided by Android Studio. This project was build on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.  
 
 ## How to Use ##
-Simply start the app, point the camera at the faces you wish to guess ages with. Once boxes appear around detected faces, tap the screen once and the faces will be processed. The results will display on the screen. I limited the app to guess only 6 faces at a time, due to the GUI design choice. 
-
+Simply start the app, point the camera at the faces you wish to guess ages with. Once boxes appear around detected faces, tap the screen once and the faces will be processed. The results will display on the screen. I limited the app to guess only 6 faces at a time, due to the GUI design choice.  
+  
 It may take a few seconds to process each face, so the GUI will indicate progress as follows:
   * __Processesed__: White box with `(x,y)` age range
   * __Processing__:  White box with `...`
@@ -28,8 +30,21 @@ It may take a few seconds to process each face, so the GUI will indicate progres
 ![Processing Progress](docs/images/Screenshot_2017-11-02-10-21-18.png)
 
 ## Face Detection ##
-AndroidOpenCVVideoProcessing/app/src/main/res/raw/
+I decided to use an LBP face classifier, to keep the framerate high for video. The user and subjects and adjust accordingly, in real-time, to improve detection. I used a build-in cascade classifier in openCV and instantiated it with a pre-trained LPB xml file, [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml).  
+  
+I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. You can find the file [here](https://github.com/opencv/opencv/blob/master/data/lbpcascades). It is   * __License__ 
+    * [OpenCV_LICENSE](OpenCV_LICENSE)
 
+## Age Estimation ##
+The Inception model included was pre-trained from the [Adience Benchmark](http://www.openu.ac.il/home/hassner/Adience/data.html).  
+  
+You can find instructions on how to train the model yourself or download pre-trained checkpoints from (https://github.com/dpressel/rude-carnie)[https://github.com/dpressel/rude-carnie].
+  
+Android requires a frozen model (protobuff) with proper input and output names. In order to freeze the model in a way that Android's tensorflow API can use it, we have to load the checkpoints for testing and output a new model.pbtext for freezing. Files for getting you started can be found [here](docs)
+  
+  * The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/main/assets] is subject to the following __Lincenses__ 
+    * [AdienceBenchmark_LICENSE](AdienceBenchmark_LICENSE)
+    * [AgeGenderDeepLearning_LICENSE](AgeGenderDeepLearning_LICENSE)
 
 ## Requirements ##
   * Software
