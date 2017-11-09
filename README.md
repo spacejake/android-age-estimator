@@ -2,7 +2,7 @@
  This fun android app can estimate the ages of people using face detection and tensorflow. 
  
  ## Introduction ## 
-This app uses multi face detection accomplished by using a pre-trianed LBP cascade classifier and OpenCV. The detected faces are extracted using the bounding box and feed into a pre-trained Inceptionv3 model. The Inception model's output is interpreted to get the best guessed age range class for each face and the results are displaied on screen.  
+This app uses multi face detection accomplished by using a pre-trianed LBP cascade classifier and OpenCV. The detected faces are extracted using the bounding box and feed into a pre-trained Inceptionv3 model. The Inception model's output is interpreted to get the best guessed age range for each face and the results are displayed on screen.  
   
 The pre-trained classifier and Inception models are included in this repository.
   
@@ -13,9 +13,10 @@ The application was created for a class assignment, as such please exclude the p
 ## Building the app ##
 Import the application from the [AndroidOpenCVVideoProcessing](AndroidOpenCVVideoProcessing) dir into Android Studio as a gradel application.  
   
-[build.gradle](AndroidOpenCVVideoProcessing/app/build.gradle) will need to be modified for configuring Bazel binary location, target archtecture, and tensorflow source dir. 
+[build.gradle](AndroidOpenCVVideoProcessing/app/build.gradle) will need to be modified for configuring Bazel binary location, target archtecture, and Tensorflow source dir.  
   
-Tensorflow source, and instructions to build it, can be found [here](https://github.com/tensorflow/tensorflow)
+Tensorflow source:   
+[https://github.com/tensorflow/tensorflow](https://github.com/tensorflow/tensorflow)
   
 It requires a device with a Camera and Android OS version >= 23. Everything should be included, aside from build dependencies provided by Android Studio. This project was build on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.  
 
@@ -32,7 +33,8 @@ It may take a few seconds to process each face, so the GUI will indicate progres
 ## Face Detection ##
 I decided to use an LBP face classifier, to keep the framerate high for video. The user and subjects and adjust accordingly, in real-time, to improve detection. I used a build-in cascade classifier in openCV and instantiated it with a pre-trained LPB xml file, [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml).  
   
-I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. You can find the file [here](https://github.com/opencv/opencv/blob/master/data/lbpcascades).
+I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. The file is found:  
+[https://github.com/opencv/opencv/blob/master/data/lbpcascades](https://github.com/opencv/opencv/blob/master/data/lbpcascades).
   
 __License__ included for using lbpcascade_frontalface.xml
   * [OpenCV_LICENSE](OpenCV_LICENSE)
@@ -40,10 +42,12 @@ __License__ included for using lbpcascade_frontalface.xml
 ## Age Estimation ##
 The Inception model included was pre-trained from the [Adience Benchmark](http://www.openu.ac.il/home/hassner/Adience/data.html).  
   
-You can find instructions on how to train the model yourself or download pre-trained checkpoints from (https://github.com/dpressel/rude-carnie)[https://github.com/dpressel/rude-carnie].
+You can find instructions on how to train the model yourself or download pre-trained checkpoints from:   (https://github.com/dpressel/rude-carnie)[https://github.com/dpressel/rude-carnie].
   
 Android requires a frozen model (protobuff) with proper input and output names. In order to freeze the model in a way that Android's tensorflow API can use it, we have to load the checkpoints for testing and output a new model.pbtext for freezing. Files for getting you started can be found [here](docs)
+  
 
+  
 This model can is limited to classifing the following age ranges
   - (0, 2)
   - (4, 6)
