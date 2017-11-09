@@ -1,0 +1,142 @@
+// set to 'bazel', 'cmake', 'makefile', 'none'
+def nativeBuildSystem = 'bazel'
+
+// Controls output directory in APK and CPU type for Bazel builds.
+// NOTE: Does not affect the Makefile build target API (yet), which currently
+// assumes armeabi-v7a. If building with make, changing this will require
+// editing the Makefile as well.
+// The CMake build has only been tested with armeabi-v7a; others may not work.
+def cpuType = 'x86'
+
+// Output directory in the local directory for packaging into the APK.
+def nativeOutDir = 'libs/' + cpuType
+
+// Default to building with Bazel and override with make if requested.
+def nativeBuildRule = 'buildNativeBazel'
+def tensorflowSrc = '/home/jake/code/tensorflow'
+def demoLibPath = tensorflowSrc + '/bazel-bin/tensorflow/examples/android/libtensorflow_demo.so'
+def inferenceLibPath = tensorflowSrc + '/bazel-bin/tensorflow/contrib/android/libtensorflow_inference.so'
+if (nativeBuildSystem == 'makefile') {
+    nativeBuildRule = 'buildNativeMake'
+    demoLibPath = tensorflowSrc + '/tensorflow/contrib/makefile/gen/lib/libtensorflow_demo.so'
+    inferenceLibPath = tensorflowSrc + '/tensorflow/contrib/makefile/gen/lib/libtensorflow_inference.so'
+}
+
+def tensorflowLib = tensorflowSrc + '/tensorflow'
+def tensorflowJavaSrc = tensorflowLib + '/java/src/main/java'
+def tensorflowJavaContrib = tensorflowLib + '/contrib/android/java'
+
+// If building with Bazel, this is the location of the bazel binary.
+// NOTE: Bazel does not yet support building for Android on Windows,
+// so in this case the Makefile build must be used as described above.
+def bazelLocation = 'bazel'
+
+// import DownloadModels task
+project.ext.ASSET_DIR = projectDir.toString() + '/assets'
+project.ext.TMP_DIR = project.buildDir.toString() + '/downloads'
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
+    defaultConfig {
+        applicationId "com.example.user.myapplication"
+        minSdkVersion 23
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-frtti -fexceptions"
+                //abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'mips', 'mips64'
+                abiFilters 'x86'
+            }
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            if (nativeBuildSystem == 'bazel' || nativeBuildSystem == 'makefile') {
+                // TensorFlow Java API sources.
+                java {
+                    srcDir tensorflowJavaSrc
+                    exclude '**/examples/**'
+                }
+
+                // Android TensorFlow wrappers, etc.
+                java {
+                    srcDir tensorflowJavaContrib
+                }
+            }
+            // Android demo app sources.
+            //java {
+            //    srcDir 'src'
+            //}
+
+            //manifest.srcFile 'AndroidManifest.xml'
+            //resources.srcDirs = ['src']
+            //aidl.srcDirs = ['src']
+            //renderscript.srcDirs = ['src']
+            //res.srcDirs = ['res']
+            assets.srcDirs = [project.ext.ASSET_DIR, 'src/main/assets', 'src/main/assets/']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    productFlavors {
+    }
+}
+
+task buildNativeBazel(type: Exec) {
+    workingDir tensorflowSrc
+    commandLine bazelLocation, 'build', '-c', 'opt', 'tensorflow/examples/android:tensorflow_native_libs', '--crosstool_top=//external:android/crosstool', '--cpu=' + cpuType, '--host_crosstool_top=@bazel_tools//tools/cpp:toolchain'
+}
+
+task copyNativeLibs(type: Copy) {
+    from demoLibPath
+    from inferenceLibPath
+    into nativeOutDir
+    duplicatesStrategy = 'include'
+    dependsOn nativeBuildRule
+    fileMode 0644
+}
+
+tasks.whenTaskAdded { task ->
+    if (nativeBuildSystem == 'bazel' || nativeBuildSystem == 'makefile') {
+        if (task.name == 'assembleDebug') {
+            task.dependsOn 'copyNativeLibs'
+        }
+        if (task.name == 'assembleRelease') {
+            task.dependsOn 'copyNativeLibs'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    testCompile 'junit:junit:4.12'
+    compile project(':openCVLibrary300')
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+}
