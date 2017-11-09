@@ -46,7 +46,17 @@ You can find instructions on how to train the model yourself or download pre-tra
   
 Android requires a frozen model (protobuff) with proper input and output names. In order to freeze the model in a way that Android's tensorflow API can use it, we have to load the checkpoints for testing and output a new model.pbtext for freezing. Files for getting you started can be found [here](docs)
   
-
+  * [chkpoint-to-pbtext.py](docs/chkpoint-to-pbtext.py): Outputs an Android compatible pbtxt from InceptionV3 Checkpoint files
+    * __Usage__
+    ```
+    python chkpoint-to-pbtext.py --model_dir </path/to/checkpoints> --output_model_dir </path/to/output.pbtxt> --output_model_name <model.pbtxt>
+    ```
+  * [prep-tf-android.py](docs/prep-tf-android.py): Converts checkpoints into Android compatible protobuff model
+    * __Modify__ file to point to input files
+    * __Usage__
+    ```
+    python prep-tf-android.py
+    ```
   
 This model can is limited to classifing the following age ranges
   - (0, 2)
@@ -70,6 +80,7 @@ The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/ma
     * cmake
     * Tensorflow
     * OpenCV for android (Included v3.0.0)
+    * Python 3.5.x
   * __Hardware__ (Andriod Pone)
     * Phone with Android OS >= v5.0 (API 23, Marshmallow)
     * Camera
