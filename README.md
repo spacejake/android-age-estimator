@@ -82,7 +82,7 @@ The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/ma
     * OpenCV for android (Included v3.0.0)
     * Python 3.5.x
   * __Hardware__ (Andriod Pone)
-    * Phone with Android OS >= v5.0 (API 23, Marshmallow)
+    * Device with Android OS >= v5.0 (API 23, Marshmallow)
     * Camera
 
 
