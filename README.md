@@ -58,7 +58,7 @@ Android requires a frozen model (protobuff) with proper input and output names. 
     python prep-tf-android.py
     ```
   
-This model can is limited to classifing the following age ranges
+This model is limited to classifing the following age ranges
   - (0, 2)
   - (4, 6)
   - (8, 12)
