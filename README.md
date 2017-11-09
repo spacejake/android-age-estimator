@@ -68,7 +68,7 @@ This model can is limited to classifing the following age ranges
   - (48, 53)
   - (60, 100)
 
-The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/main/assets] may be subject to the following __Lincenses__ 
+The included model [frozen_age_graph.pb](AndroidOpenCVVideoProcessing/app/src/main/assets) may be subject to the following __Lincenses__ 
   * [AdienceBenchmark_LICENSE](AdienceBenchmark_LICENSE)
   * [AgeGenderDeepLearning_LICENSE](AgeGenderDeepLearning_LICENSE)
 
