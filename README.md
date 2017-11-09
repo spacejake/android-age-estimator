@@ -11,7 +11,7 @@ The application was created for a class assignment, as such please excuse the po
 ![Screenshot](docs/images/Screenshot_2017-11-02-10-20-55.png)
 
 ## Building the app ##
-Import the application from the [AndroidOpenCVVideoProcessing](AndroidOpenCVVideoProcessing) dir into Android Studio as a gradel application.  
+Import the application from the [AndroidOpenCVVideoProcessing](AndroidOpenCVVideoProcessing) dir into Android Studio as a gradle application.  
   
 [build.gradle](AndroidOpenCVVideoProcessing/app/build.gradle) will need to be modified for configuring Bazel binary location, target archtecture, and Tensorflow source dir.  
   
