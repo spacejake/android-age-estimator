@@ -6,7 +6,7 @@ This app uses multi face detection accomplished by using a pre-trianed LBP casca
   
 The pre-trained classifier and Inception models are included in this repository.
   
-The application was created for a class assignment, as such please exclude the poor coding choices due to the hastyness under which this app was developed. With this app, I was able to learn some basics regarding android development using OpenCV and Tensorflow.
+The application was created for a class assignment, as such please excuse the poor coding choices due to the hastyness under which this app was developed. With this app, I was able to learn some basics regarding android development using OpenCV and Tensorflow.
 
 ![Screenshot](docs/images/Screenshot_2017-11-02-10-20-55.png)
 
