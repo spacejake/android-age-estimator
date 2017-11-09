@@ -32,7 +32,8 @@ It may take a few seconds to process each face, so the GUI will indicate progres
 ## Face Detection ##
 I decided to use an LBP face classifier, to keep the framerate high for video. The user and subjects and adjust accordingly, in real-time, to improve detection. I used a build-in cascade classifier in openCV and instantiated it with a pre-trained LPB xml file, [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml).  
   
-I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. You can find the file [here](https://github.com/opencv/opencv/blob/master/data/lbpcascades). It is   * __License__ 
+I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. You can find the file [here](https://github.com/opencv/opencv/blob/master/data/lbpcascades).
+  * __License__ 
     * [OpenCV_LICENSE](OpenCV_LICENSE)
 
 ## Age Estimation ##
@@ -41,7 +42,17 @@ The Inception model included was pre-trained from the [Adience Benchmark](http:/
 You can find instructions on how to train the model yourself or download pre-trained checkpoints from (https://github.com/dpressel/rude-carnie)[https://github.com/dpressel/rude-carnie].
   
 Android requires a frozen model (protobuff) with proper input and output names. In order to freeze the model in a way that Android's tensorflow API can use it, we have to load the checkpoints for testing and output a new model.pbtext for freezing. Files for getting you started can be found [here](docs)
-  
+
+This model can is limited to classifing the following age ranges
+  - (0, 2)
+  - (4, 6)
+  - (8, 12)
+  - (15, 20)
+  - (25, 32)
+  - (38, 43)
+  - (48, 53)
+  - (60, 100)
+
   * The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/main/assets] is subject to the following __Lincenses__ 
     * [AdienceBenchmark_LICENSE](AdienceBenchmark_LICENSE)
     * [AgeGenderDeepLearning_LICENSE](AgeGenderDeepLearning_LICENSE)
