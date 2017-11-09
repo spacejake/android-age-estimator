@@ -33,8 +33,9 @@ It may take a few seconds to process each face, so the GUI will indicate progres
 I decided to use an LBP face classifier, to keep the framerate high for video. The user and subjects and adjust accordingly, in real-time, to improve detection. I used a build-in cascade classifier in openCV and instantiated it with a pre-trained LPB xml file, [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml).  
   
 I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. You can find the file [here](https://github.com/opencv/opencv/blob/master/data/lbpcascades).
-  * __License__ 
-    * [OpenCV_LICENSE](OpenCV_LICENSE)
+  
+__License__ included for using lbpcascade_frontalface.xml
+  * [OpenCV_LICENSE](OpenCV_LICENSE)
 
 ## Age Estimation ##
 The Inception model included was pre-trained from the [Adience Benchmark](http://www.openu.ac.il/home/hassner/Adience/data.html).  
@@ -53,19 +54,19 @@ This model can is limited to classifing the following age ranges
   - (48, 53)
   - (60, 100)
 
-  * The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/main/assets] is subject to the following __Lincenses__ 
-    * [AdienceBenchmark_LICENSE](AdienceBenchmark_LICENSE)
-    * [AgeGenderDeepLearning_LICENSE](AgeGenderDeepLearning_LICENSE)
+The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/main/assets] may be subject to the following __Lincenses__ 
+  * [AdienceBenchmark_LICENSE](AdienceBenchmark_LICENSE)
+  * [AgeGenderDeepLearning_LICENSE](AgeGenderDeepLearning_LICENSE)
 
 ## Requirements ##
-  * Software
+  * __Software__
     * Ubuntu (built on v16.04)
     * Android Studio
     * Bazel
     * cmake
     * Tensorflow
     * OpenCV for android (Included v3.0.0)
-  * Hardware (Andriod Pone)
+  * __Hardware__ (Andriod Pone)
     * Phone with Android OS >= v5.0 (API 23, Marshmallow)
     * Camera
 
