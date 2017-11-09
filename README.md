@@ -42,7 +42,7 @@ __License__ included for using lbpcascade_frontalface.xml
 ## Age Estimation ##
 The Inception model included was pre-trained from the [Adience Benchmark](http://www.openu.ac.il/home/hassner/Adience/data.html).  
   
-You can find instructions on how to train the model yourself or download pre-trained checkpoints from:   (https://github.com/dpressel/rude-carnie)[https://github.com/dpressel/rude-carnie].
+You can find instructions on how to train the model yourself or download pre-trained checkpoints from:   [https://github.com/dpressel/rude-carnie](https://github.com/dpressel/rude-carnie).
   
 Android requires a frozen model (protobuff) with proper input and output names. In order to freeze the model in a way that Android's tensorflow API can use it, we have to load the checkpoints for testing and output a new model.pbtext for freezing. Files for getting you started can be found [here](docs)
   
