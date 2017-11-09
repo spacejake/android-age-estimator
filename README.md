@@ -18,7 +18,7 @@ Import the application from the [AndroidOpenCVVideoProcessing](AndroidOpenCVVide
 Tensorflow source:   
 [https://github.com/tensorflow/tensorflow](https://github.com/tensorflow/tensorflow)
   
-It requires a device with a Camera and Android OS version >= 23. Everything should be included, aside from build dependencies provided by Android Studio. This project was build on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.  
+It requires a device with a Camera and Android OS version >= 5.0 (API 23). Everything should be included, aside from build dependencies provided by Android Studio. This project was build on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.  
 
 ## How to Use ##
 Simply start the app, point the camera at the faces you wish to guess ages with. Once boxes appear around detected faces, tap the screen once and the faces will be processed. The results will display on the screen. I limited the app to guess only 6 faces at a time, due to the GUI design choice.  
