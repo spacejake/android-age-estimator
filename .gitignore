@@ -54,11 +54,13 @@ freeline.py
 freeline/
 freeline_project_description.json
 
+# Git backup files
+*.orig
+
 # Windows thumbnail db
 Thumbs.db
 
 # OSX files
 .DS_Store
 
-# Android Studio
 .idea/*
