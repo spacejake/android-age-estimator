@@ -18,7 +18,7 @@ Import the application from the [AndroidOpenCVVideoProcessing](AndroidOpenCVVide
 Tensorflow source:   
 [https://github.com/tensorflow/tensorflow](https://github.com/tensorflow/tensorflow)
   
-It requires a device with a Camera and Android OS version >= 5.0 (API 23). Everything should be included, aside from build dependencies provided by Android Studio. This project was build on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.  
+It requires a device with a Camera and Android OS version >= 5.0 (API 23). Everything should be included, aside from build dependencies provided by Android Studio. This project was built on Ubuntu 16.04 only. See [Requirements](#requirements) for a more complete set of dependancies.  
 
 ## How to Use ##
 Simply start the app, point the camera at the faces you wish to guess ages with. Once boxes appear around detected faces, tap the screen once and the faces will be processed. The results will display on the screen. I limited the app to guess only 6 faces at a time, due to the GUI design choice.  
@@ -31,7 +31,7 @@ It may take a few seconds to process each face, so the GUI will indicate progres
 ![Processing Progress](docs/images/Screenshot_2017-11-02-10-21-18.png)
 
 ## Face Detection ##
-I decided to use an LBP face classifier, to keep the framerate high for video. The user and subjects and adjust accordingly, in real-time, to improve detection. I used a build-in cascade classifier in openCV and instantiated it with a pre-trained LPB xml file, [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml).  
+I decided to use an LBP face classifier, to keep the framerate high for video. The user and subjects can adjust accordingly, in real-time, to improve detection. I used a openCV build-in cascade classifier and instantiated it with a pre-trained LPB xml file, [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml).  
   
 I sourced [lbpcascade_frontalface.xml](AndroidOpenCVVideoProcessing/app/src/main/res/raw/lbpcascade_frontalface.xml) from the OpenCV github repository. The file is found:  
 [https://github.com/opencv/opencv/blob/master/data/lbpcascades](https://github.com/opencv/opencv/blob/master/data/lbpcascades).
