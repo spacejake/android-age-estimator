@@ -84,6 +84,7 @@ The included model (frozen_age_graph.pb)[AndroidOpenCVVideoProcessing/app/src/ma
   * __Hardware__ (Andriod Device)
     * Device with Android OS >= v5.0 (API 23, Marshmallow)
     * Camera
+    * Touch Screen
 
 
 ## License ##
